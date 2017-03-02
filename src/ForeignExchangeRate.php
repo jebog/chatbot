@@ -1,31 +1,14 @@
 <?php
 
-namespace App;
+namespace DonMarkus;
 
 class ForeignExchangeRate
 {
 
 
     protected static $unusedRates = [
-        'TRY',
-        'THB',
-        'CAD',
-        'CZK',
-        'DKK',
-        'KRW',
-        'SGD',
-        'ZAR',
-        'NOK',
-        'INR',
-        'ILS',
-        'PHP',
-        'RON',
-        'RUB',
-        'BGN',
-        'HKD',
-        'MXN',
-        'IDR',
-        'BRL'
+        'TRY', 'THB', 'CAD', 'CZK', 'DKK', 'KRW', 'SGD', 'ZAR', 'NOK', 'INR',
+        'ILS', 'PHP', 'RON', 'RUB', 'BGN', 'HKD', 'MXN', 'IDR', 'BRL'
     ];
 
     /**
@@ -70,10 +53,10 @@ class ForeignExchangeRate
      */
     private function formatRates(string $ratesBase, string $ratesDate, array $rates)
     {
-        $returnMessage = '💰 Your rates based on ' . $ratesBase . ':\r\n' . 'Date: ' . $ratesDate . '\r\n';
+        $returnMessage = '💰 Your rates based on ' . $ratesBase . "\n\r" . 'Date: ' . $ratesDate . "\n\r";
 
         foreach ($rates as $key => $rate) {
-            $returnMessage .= $key . ' ' . $rate . '\n\r';
+            $returnMessage .= $key . ' ' . $rate . "\n\r";
         }
 
         return $returnMessage;

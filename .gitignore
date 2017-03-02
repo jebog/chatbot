@@ -2,4 +2,3 @@ composer.phar
 /vendor/
 .idea
 .env
-command.sh

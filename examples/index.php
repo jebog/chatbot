@@ -1,7 +1,8 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
-use App\ChatbotHelper;
+use DonMarkus\ChatbotHelper;
+
+require_once __DIR__ . '/../vendor/autoload.php';
 
 // Create the chatbot helper instance
 $chatbotHelper = new ChatbotHelper();

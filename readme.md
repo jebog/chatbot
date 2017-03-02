@@ -99,16 +99,16 @@ On our PHP application we need to have a webhook. This means a public URL that F
 
 So we need a public URL to the index.php file and there are two options here for you.
 
-### Make it live
+### Make it live (Standalone)
 
-If you got a server you can push your code there where you have public access to it. The URL then maybe looks like `https://yourserver.com/chatbot-php-boilerplate/`.
+If you got a server you can push your code there where you have public access to it. The URL then maybe looks like `https://yourserver.com/chatbot/examples/index.php`.
 
 ### Do it locally
 
 For testing it is definitely easier when you don't have to push every change to a live server in order to test the code. 
 This is why I use a local public URL. There are multiple services out there that generate a public URL to your local server. Checkout out [ngrok](https://www.sitepoint.com/use-ngrok-test-local-site/) or use [Laravel Valet Sharing](https://laravel.com/docs/5.2/valet#sharing-sites) which is my choice since I'm using Valet already. (Laravel Valet is using ngrok under the hood too)
 
-It doesn't matter how you do it, but you just need a public secured URL to the `index.php` file. (https!). This is my URL: `https://7def2gH4.ngrok.io`
+It doesn't matter how you do it, but you just need a public secured URL to the `index.php` file. (https!). This is my URL: `https://7def2gH4.ngrok.io/examples/index.php`
 
 ### Connect the Facebook app to your application
 
