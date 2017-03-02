@@ -10,18 +10,18 @@ use Monolog\Logger;
 class ChatbotHelper
 {
 
+    public $config;
     protected $chatbotAI;
     protected $facebookSend;
     protected $log;
     private $accessToken;
-    public $config;
 
     public function __construct()
     {
-        $dotenv = new Dotenv(dirname(__FILE__, 2));
+        $dotenv = new Dotenv(__DIR__ . '/../');
         $dotenv->load();
         $this->accessToken = getenv('PAGE_ACCESS_TOKEN');
-        $this->config = include('config.php');
+        $this->config = require __DIR__ . '/config.php';
         $this->chatbotAI = new ChatbotAI($this->config);
         $this->facebookSend = new FacebookSend();
         $this->log = new Logger('general');
@@ -56,7 +56,7 @@ class ChatbotHelper
     public function isMessage($input)
     {
         return isset($input['entry'][0]['messaging'][0]['message']['text']) && !isset
-        ($input['entry'][0]['messaging'][0]['message']['is_echo']);
+            ($input['entry'][0]['messaging'][0]['message']['is_echo']);
 
     }
 
@@ -88,7 +88,7 @@ class ChatbotHelper
      */
     public function send($senderId, string $replyMessage)
     {
-        return $this->facebookSend->send($this->accessToken, $senderId, $replyMessage);
+        $this->facebookSend->send($this->accessToken, $senderId, $replyMessage);
     }
 
     /**
@@ -107,7 +107,7 @@ class ChatbotHelper
         $hubVerifyToken = $request['hub_verify_token'];
         $hubChallenge = $request['hub_challenge'];
 
-        if (isset($hubChallenge) && $hubVerifyToken == $this->config['webhook_verify_token']) {
+        if (null !== $hubChallenge && $hubVerifyToken === $this->config['webhook_verify_token']) {
 
             echo $hubChallenge;
         }

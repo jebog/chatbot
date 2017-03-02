@@ -6,7 +6,7 @@ class ForeignExchangeRate
 {
 
 
-    protected $unusedRates = [
+    protected static $unusedRates = [
         'TRY',
         'THB',
         'CAD',
@@ -39,7 +39,7 @@ class ForeignExchangeRate
         $ratesJsonData = file_get_contents('http://api.fixer.io/latest?base=' . $base, true);
 
         if (!$ratesJsonData) {
-            return 'Sorry I dont know this rate base. Try EUR, USD, CHF...';
+            return 'Sorry I don\'t know this rate base. Try EUR, USD, CHF...';
         }
 
         $ratesData = json_decode($ratesJsonData);
@@ -47,6 +47,18 @@ class ForeignExchangeRate
         $rates = $this->removeUnusedRates((array)$ratesData->rates);
 
         return $this->formatRates($ratesData->base, $ratesData->date, $rates);
+    }
+
+    /**
+     * Remove some unused rates
+     * @param array $rates
+     * @return array
+     */
+    private function removeUnusedRates(array $rates)
+    {
+        return array_filter($rates, function ($key) {
+            return !in_array($key, self::$unusedRates, false);
+        }, ARRAY_FILTER_USE_KEY);
     }
 
     /**
@@ -66,18 +78,6 @@ class ForeignExchangeRate
 
         return $returnMessage;
 
-    }
-
-    /**
-     * Remove some unused rates
-     * @param array $rates
-     * @return array
-     */
-    private function removeUnusedRates(array $rates)
-    {
-        return array_filter($rates, function ($key) {
-            return !in_array($key, $this->unusedRates);
-        }, ARRAY_FILTER_USE_KEY);
     }
 
 }

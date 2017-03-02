@@ -12,12 +12,13 @@ class ChatbotAI
 
     protected $apiClient;
     protected $config;
-    protected $foreignExchangerate;
+    protected $foreignExchangeRate;
     protected $witClient;
 
     /**
      * ChatbotAI constructor.
      * @param $config
+     * @throws \Exception
      */
     public function __construct($config)
     {
@@ -26,7 +27,7 @@ class ChatbotAI
         $this->log->pushHandler(new StreamHandler('debug.log'));
         $this->apiClient = new Client($this->config['apiai_token']);
         $this->witClient = new \Tgallice\Wit\Client($this->config['witai_token']);
-        $this->foreignExchangerate = new ForeignExchangeRate();
+        $this->foreignExchangeRate = new ForeignExchangeRate();
     }
 
     /**
@@ -48,7 +49,7 @@ class ChatbotAI
 
     /**
      * Get the answer to the user's message with help from api.ai
-     * @param string message
+     * @param string $message
      * @return string
      */
     public function getApiAIAnswer($message)
@@ -74,6 +75,7 @@ class ChatbotAI
      */
     public function getWitAIAnswer($message)
     {
+        $intent = '';
         try {
 
             $response = $this->witClient->get('/message', [
@@ -97,7 +99,7 @@ class ChatbotAI
      */
     public function getForeignExchangeRateAnswer($message)
     {
-        return $this->foreignExchangerate->getRates($message);
+        return $this->foreignExchangeRate->getRates($message);
     }
 
 
