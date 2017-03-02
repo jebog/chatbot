@@ -6,6 +6,8 @@ namespace App;
 use Dotenv\Dotenv;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use pimax\FbBotApp;
+use pimax\Messages\Message;
 
 class ChatbotHelper
 {
@@ -14,49 +16,57 @@ class ChatbotHelper
     protected $chatbotAI;
     protected $facebookSend;
     protected $log;
-    private $accessToken;
+    private $input;
 
     public function __construct()
     {
         $dotenv = new Dotenv(__DIR__ . '/../');
         $dotenv->load();
-        $this->accessToken = getenv('PAGE_ACCESS_TOKEN');
         $this->config = require __DIR__ . '/config.php';
         $this->chatbotAI = new ChatbotAI($this->config);
-        $this->facebookSend = new FacebookSend();
+        $this->facebookSend = new FbBotApp(getenv('PAGE_ACCESS_TOKEN'));
         $this->log = new Logger('general');
         $this->log->pushHandler(new StreamHandler('debug.log'));
+        $this->input = $this->getInputData();
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getInputData()
+    {
+        return json_decode(file_get_contents('php://input'), true);
     }
 
     /**
      * Get the sender id of the message
-     * @param $input
-     * @return mixed
+     * @return int
+     * @internal param $input
      */
-    public function getSenderId($input)
+    public function getSenderId()
     {
-        return $input['entry'][0]['messaging'][0]['sender']['id'];
+        return $this->input['entry'][0]['messaging'][0]['sender']['id'];
     }
 
     /**
      * Get the user's message from input
-     * @param $input
      * @return mixed
+     * @internal param $input
      */
-    public function getMessage($input)
+    public function getMessage()
     {
-        return $input['entry'][0]['messaging'][0]['message']['text'];
+        return $this->input['entry'][0]['messaging'][0]['message']['text'];
     }
 
     /**
      * Check if the callback is a user message
-     * @param $input
      * @return bool
+     * @internal param $input
      */
-    public function isMessage($input)
+    public function isMessage()
     {
-        return isset($input['entry'][0]['messaging'][0]['message']['text']) && !isset
-            ($input['entry'][0]['messaging'][0]['message']['is_echo']);
+        return isset($this->input['entry'][0]['messaging'][0]['message']['text']) && !isset
+            ($this->input['entry'][0]['messaging'][0]['message']['is_echo']);
 
     }
 
@@ -85,11 +95,13 @@ class ChatbotHelper
      * Send a reply back to Facebook chat
      * @param $senderId
      * @param $replyMessage
+     * @return array
      */
     public function send($senderId, string $replyMessage)
     {
-        $this->facebookSend->send($this->accessToken, $senderId, $replyMessage);
+        return $this->facebookSend->send(new Message($senderId, $replyMessage));
     }
+
 
     /**
      * Verify Facebook webhook

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8f67d6e908b1c0db3a08a136fcac1ad5",
-    "content-hash": "a4d5a2453561e5ce1b963d4d5367e7f8",
+    "hash": "6999d0e6ed0792618ec895a41c9e9202",
+    "content-hash": "5f085e0c5384efa3dbb0064eaa968970",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -1002,6 +1002,45 @@
             "time": "2016-12-08 20:27:08"
         },
         {
+            "name": "pimax/fb-messenger-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pimax/fb-messenger-php.git",
+                "reference": "5b6f0b7516c0f4af169a22ce64e04de659c2b3ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pimax/fb-messenger-php/zipball/5b6f0b7516c0f4af169a22ce64e04de659c2b3ed",
+                "reference": "5b6f0b7516c0f4af169a22ce64e04de659c2b3ed",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "pimax\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Max Pinyugin",
+                    "email": "m.pinyugin@gmail.com",
+                    "homepage": "http://russian-developers.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": " Facebook Messenger Bot PHP API",
+            "homepage": "https://github.com/pimax/fb-messenger-php",
+            "time": "2017-03-02 09:07:50"
+        },
+        {
             "name": "psr/http-message",
             "version": "1.0.1",
             "source": {
@@ -1823,7 +1862,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "pimax/fb-messenger-php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

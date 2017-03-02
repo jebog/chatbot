@@ -10,23 +10,23 @@ $chatbotHelper = new ChatbotHelper();
 $chatbotHelper->verifyWebhook($_REQUEST);
 
 // Get the fb users data
-$input = json_decode(file_get_contents('php://input'), true);
-$senderId = $chatbotHelper->getSenderId($input);
 
-if ($senderId && $chatbotHelper->isMessage($input)) {
+$senderId = $chatbotHelper->getSenderId();
+
+if ($senderId && $chatbotHelper->isMessage()) {
 
     // Get the user's message
-    $message = $chatbotHelper->getMessage($input);
+    $message = $chatbotHelper->getMessage();
 
     // Example 1: Get a static message back
     $replyMessage = $chatbotHelper->getAnswer($message);
 
     // Example 2: Get foreign exchange rates
-    // $replyMessage = $chatbotHelper->getAnswer($message, 'rates');
+//     $replyMessage = $chatbotHelper->getAnswer($message, 'rates');
 
     // Example 3: If you want to use a bot platform like api.ai
     // Don't forget to place your Api.ai Client access token in the .env file
-    // $replyMessage = $chatbotHelper->getAnswer($message, 'apiai');
+//     $replyMessage = $chatbotHelper->getAnswer($message, 'apiai');
 
     // Example 4: If you want to use a bot platform like wit.ai
     // Don't forget to place your Wit.ai Client access token in the .env file (WITAI_TOKEN)

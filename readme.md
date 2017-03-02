@@ -65,7 +65,7 @@ Now we need to create a token to give our app access to our Facebook page. Selec
 
 First clone the repository and remove the existing git folder.
 ``` bash
-git clone git@github.com:christophrumpel/chatbot-php-boilerplate.git chatbot-boilerplate
+git clone https://github.com/donmarkus/chatbot-php-boilerplate.git chatbot-boilerplate
 ```
 
 ``` bash
@@ -194,6 +194,16 @@ Wit.ai will analyze the users's message. This example implementation will just s
 Of course you need to add a story to you Wit.ai application like:
 
 ![Image showing the story of wit.ai](http://screenshots.nomoreencore.com/chatbot_witai_story.png)
+
+## Included Packages
+* [tgallice/wit-php](https://github.com/tgallice/wit-php) for Wit.ia integration
+* [pimax/fb-messenger-php](https://github.com/pimax/fb-messenger-php) for Facebook Messenger Bot API
+* [monolog/monolog](https://github.com/Seldaek/monolog) for logging
+* [vlucas/phpdotenv](https://github.com/vlucas/phpdotenv) for loading configs
+* [iboldurev/api-ai-php](https://github.com/iboldurev/api-ai-php) for Api.ia integration
+
+## Special Thanks To :
+* [Christoph Rumpel](https://github.com/christophrumpel/chatbot-php-boilerplate)
 
 ## License
 

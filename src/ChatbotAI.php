@@ -25,7 +25,7 @@ class ChatbotAI
         $this->config = $config;
         $this->log = new Logger('general');
         $this->log->pushHandler(new StreamHandler('debug.log'));
-        $this->apiClient = new Client($this->config['apiai_token']);
+        $this->apiClient = new Client($this->config['apiai_token'], null, getenv('APIAI_BOT_LANGUAGE'));
         $this->witClient = new \Tgallice\Wit\Client($this->config['witai_token']);
         $this->foreignExchangeRate = new ForeignExchangeRate();
     }
