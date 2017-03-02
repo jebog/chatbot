@@ -1,5 +1,5 @@
 <?php
-use App\ForeignExchangeRate;
+use DonMarkus\ForeignExchangeRate;
 use PHPUnit\Framework\TestCase;
 
 class ForeignRateTest extends TestCase
