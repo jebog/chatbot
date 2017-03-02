@@ -1,7 +1,7 @@
 # Chatbot PHP Boilerplate
 
 
-This package makes it simple to start building a chatbot in PHP. Give me 10 minutes of your time and I will give you a chatbot starter setup.
+This package makes it simple to start building a chatbot in PHP.
 
 [![Software License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://github.com/christophrumpel/chatbot-php-boilerplate/blob/master/LICENSE.txt)
 ![GitHub version](https://img.shields.io/badge/version-v0.1-brightgreen.svg)
