@@ -2,7 +2,16 @@
   "name": "donmarkus/chatbot",
   "description": "This package makes it simple to start building a chatbot in PHP",
   "type": "library",
+  "homepage": "https://donmarkus.github.io/chatbot/",
+  "keywords": [
+    "bot",
+    "messenger-bot",
+    "wit-ai",
+    "api-ai",
+    "messenger-bot-boilerplate"
+  ],
   "require": {
+    "php": ">=7.0",
     "iboldurev/api-ai-php": "^0.2.5",
     "monolog/monolog": "^1.22",
     "vlucas/phpdotenv": "^2.4",
@@ -21,8 +30,11 @@
   "authors": [
     {
       "name": "Jean-Marc Amon",
-      "email": "jmbdilem@gmail.com"
+      "email": "jmbdilem@gmail.com",
+      "homepage": "https://marclabs.com",
+      "role": "Developer"
     }
   ],
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
